@@ -1,21 +1,15 @@
-package com.ecommerce.project.model;
+package com.ecommerce.project.payload;
 
-
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "categories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDTO {
     private Long categoryId;
 
     @NotBlank
