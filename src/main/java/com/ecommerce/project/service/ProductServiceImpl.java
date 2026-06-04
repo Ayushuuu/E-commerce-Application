@@ -10,6 +10,7 @@ import com.ecommerce.project.repository.CategoryRepository;
 import com.ecommerce.project.repository.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +37,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     private FileService fileService;
+
+    @Value("${project.image}")
+    private String path;
 
     @Override
     public ProductDTO addProduct(ProductDTO productDTO, Long categoryId) {
@@ -175,7 +179,7 @@ public class ProductServiceImpl implements ProductService{
         Product productFromDB = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("product", "productId", productId));
 
-        String path = "${product.image}";
+//        String path = "${project.image}";
         String filename = fileService.uploadImage(path, image);
 
         productFromDB.setImage(filename);
