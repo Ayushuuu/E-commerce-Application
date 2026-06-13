@@ -19,7 +19,6 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role_name")
-    @NotBlank
     private AppRole roleName;
 
     public Role(AppRole roleName) {

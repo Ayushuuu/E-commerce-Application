@@ -40,7 +40,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(min = 8, max = 25)
+    @Size(min = 8)
     @Column(name = "password")
     private String password;
 
@@ -67,4 +67,7 @@ public class User {
                joinColumns = @JoinColumn(name = "user_id"),
                inverseJoinColumns = @JoinColumn(name = "address_id"))
     private List<Address> addresses = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Cart cart;
 }
