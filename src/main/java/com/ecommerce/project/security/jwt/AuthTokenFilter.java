@@ -47,7 +47,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 logger.debug("Roles from Jwt: {}", userDetails.getAuthorities());
             }
         }catch (Exception e){
-            logger.error("Cannot set user Authentication: {}", e);
+          logger.error("Cannot set user Authentication: {}", e);
         }
         filterChain.doFilter(request, response);
     }
