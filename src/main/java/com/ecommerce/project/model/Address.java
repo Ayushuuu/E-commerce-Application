@@ -2,16 +2,12 @@ package com.ecommerce.project.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name = "addresses")
+@Table(name = "address")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,22 +17,23 @@ public class Address {
     @Column(name = "address_id")
     private Long addressId;
 
-    @NotBlank
+    @NotBlank(message = "Street name can't be empty!")
     private String street;
 
     private String buildingName;
 
-    @NotBlank
+    @NotBlank(message = "City name can't be empty!")
     private String city;
-    @NotBlank
+    @NotBlank(message = "State name can't be empty!")
     private String state;
-    @NotBlank
+    @NotBlank(message = "Country name can't be empty!")
     private String country;
-    @NotBlank
+    @NotBlank(message = "Pincode can't be empty!")
     private String pincode;
 
-    @ManyToMany(mappedBy = "addresses")
-    private List<User> users = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Address(String street, String buildingName, String city, String state, String country, String pincode) {
         this.street = street;
